@@ -7,7 +7,7 @@ body {
     min-height: 100vh;       
 }
 
-h1 {
+h1, .version {
     text-align: center;
     margin-top: 20px;
     color: #333;
