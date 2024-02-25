@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=VT323&display=swap" rel="stylesheet">  
+    <title>Pokemon Gacha Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Pokemon Gacha Simulator</h1>
+    <div id="pokemonContainer">
+        <!-- Pokemon will be displayed here -->
+    </div>
+
+    <!-- Buttons Container -->
+    <div id="buttonsContainer">
+        <button id="gachaButton" onclick="gacha()">Gacha</button>
+        <button id="cardCollectionButton" onclick="showCardCollection()">Card Collection</button>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Card Collection</h2>
+            <!-- Search bar -->
+            <input type="text" id="searchInput" oninput="searchPokemon()" placeholder="Search by ID...">
+            <div id="cardCollection">
+                <!-- Card collection will be displayed here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <!-- Copyright -->
+    <footer>
+        <p>&copy; 2024 Itsuki Tatsuya. All rights reserved.</p>
+    </footer>
+</body>
+</html>
