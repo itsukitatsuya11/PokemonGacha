@@ -124,7 +124,7 @@ function updateCardCollection(filteredCardCollection) {
                     </table>
                 </div>
             </div>
-            <button onclick="deletePokemon(${index})">Delete</button>
+            <button class="delete" onclick="deletePokemon(${index})">Delete</button>
         `;
         cardCollectionDiv.appendChild(pokemonDiv);
     });
