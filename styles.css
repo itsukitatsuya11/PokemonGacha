@@ -28,7 +28,7 @@ h1 {
     padding: 20px;
     text-align: center;
     width: 200px;
-    margin-bottom: 20px; /* Menambahkan margin bawah agar card collection tidak bertabrakan */
+    margin-bottom: 20px;
 }
 
 button {
@@ -64,6 +64,10 @@ button:hover {
     margin-top: 20px;
 }
 
+option {
+    font-family: "VT323", monospace;
+}
+
 .pokemon {
     background-color: #fff;
     border-radius: 8px;
@@ -71,7 +75,7 @@ button:hover {
     padding: 20px;
     text-align: center;
     width: 200px;
-    margin-bottom: 20px; /* Menambahkan margin bawah agar card collection tidak bertabrakan */
+    margin-bottom: 20px;
 }
 
 /* Modal */
@@ -174,4 +178,3 @@ footer {
         font-size: 14px;
     }
 }
-

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=VT323&display=swap" rel="stylesheet">  
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=VT323&display=swap" rel="stylesheet">
     <title>Pokemon Gacha Simulator</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -25,6 +25,14 @@
     <div id="modal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
+            <!-- Dropdown menu for filter -->
+            <div id="filterContainer">
+                <label for="filterStrength">Filter by:</label>
+                <select id="filterStrength">
+                    <option value="all">Default</option>
+                    <option value="highest">Highest Strength</option>
+                </select>
+            </div>
             <h2>Card Collection</h2>
             <!-- Search bar -->
             <input type="text" id="searchInput" oninput="searchPokemon()" placeholder="Search by ID...">
@@ -35,10 +43,11 @@
     </div>
 
     <script src="script.js"></script>
-
+    
     <!-- Copyright -->
     <footer>
         <p>&copy; 2024 Itsuki Tatsuya. All rights reserved.</p>
     </footer>
+    
 </body>
 </html>

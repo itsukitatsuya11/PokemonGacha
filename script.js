@@ -191,7 +191,6 @@ function getWeakness(types) {
     return Array.from(weaknessSet).join(', ');
 }
 
-
 function displayPokemon(pokemon) {
     const pokemonContainer = document.getElementById('pokemonContainer');
     const pokemonDiv = document.createElement('div');
@@ -232,4 +231,38 @@ function showCardCollection() {
 function closeModal() {
     const modal = document.getElementById('modal');
     modal.style.display = "none";
+}
+
+let isFilterActive = false;
+document.getElementById('filterStrength').addEventListener('change', function() {
+    const selectedFilter = this.value;
+    if (selectedFilter === 'highest') {
+        isFilterActive = true;
+        filterByHighestStrength();
+    } else {
+        isFilterActive = false;
+        updateCardCollection();
+    }
+});
+
+function filterByHighestStrength() {
+    const sortedPokemon = [...cardCollection].sort((a, b) => {
+        const totalStatsA = calculateTotalStats(a.stats);
+        const totalStatsB = calculateTotalStats(b.stats);
+        return totalStatsB - totalStatsA;
+    });
+    updateCardCollection(sortedPokemon);
+}
+
+function calculateTotalStats(stats) {
+    let totalStats = 0;
+    stats.forEach(stat => {
+        totalStats += stat.base_stat;
+    });
+    return totalStats;
+}
+
+function disableFilter() {
+    isFilterActive = false;
+    updateCardCollection();
 }
