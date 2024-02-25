@@ -58,6 +58,12 @@ function updateCardCollection(filteredCardCollection) {
     const cardCollectionDiv = document.getElementById('cardCollection');
     cardCollectionDiv.innerHTML = '';
     (filteredCardCollection || cardCollection).forEach((pokemon, index) => {
+        let totalStats = 0;
+        ['hp', 'attack', 'defense', 'special-attack', 'special-defense', 'speed'].forEach(statName => {
+            const stat = pokemon.stats.find(stat => stat.stat.name === statName);
+            totalStats += stat.base_stat;
+        });
+
         const pokemonDiv = document.createElement('div');
         pokemonDiv.classList.add('pokemon');
         pokemonDiv.innerHTML = `
@@ -73,6 +79,10 @@ function updateCardCollection(filteredCardCollection) {
             <div class="card">
                 <span>Type:</span>
                 <span class="infodata">${pokemon.types.map(type => type.type.name).join(', ')}</span>
+            </div>
+            <div class="card">
+                <span>Strength:</span>
+                <span class="infodata">${totalStats}</span>
             </div>
             <button class="accordion">Details</button>
             <div class="panel" style="display: none;">
@@ -101,6 +111,10 @@ function updateCardCollection(filteredCardCollection) {
                 <div class="card">
                     <span>&bull; Stats:</span>
                     <table class="stats-table">
+                        <tr>
+                            <td>HP</td>
+                            <td class="infodata">${pokemon.stats.find(stat => stat.stat.name === 'hp').base_stat}</td>
+                        </tr>
                         <tr>
                             <td>Attack</td>
                             <td class="infodata">${pokemon.stats.find(stat => stat.stat.name === 'attack').base_stat}</td>
@@ -181,6 +195,12 @@ function getWeakness(types) {
 function displayPokemon(pokemon) {
     const pokemonContainer = document.getElementById('pokemonContainer');
     const pokemonDiv = document.createElement('div');
+    let totalStats = 0;
+    ['hp', 'attack', 'defense', 'special-attack', 'special-defense', 'speed'].forEach(statName => {
+        const stat = pokemon.stats.find(stat => stat.stat.name === statName);
+        totalStats += stat.base_stat;
+    });
+
     pokemonDiv.classList.add('pokemon');
     pokemonDiv.innerHTML = `
         <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
@@ -195,6 +215,10 @@ function displayPokemon(pokemon) {
         <div class="card">
             <span>Type:</span>
             <span class="infodata">${pokemon.types.map(type => type.type.name).join(', ')}</span>
+        </div>
+        <div class="card">
+            <span>Strength:</span>
+            <span class="infodata">${totalStats}</span>
         </div>
     `;
     pokemonContainer.appendChild(pokemonDiv);
