@@ -8,27 +8,37 @@ window.onload = () => {
 function gacha() {
     const gachaButton = document.getElementById('gachaButton');
     gachaButton.disabled = true;
-    gachaButton.textContent = 'Wait 10 seconds';
 
-    const pokemonContainer = document.getElementById('pokemonContainer');
-    while (pokemonContainer.firstChild) {
-        pokemonContainer.removeChild(pokemonContainer.firstChild);
-    }
+    let seconds = 10; // Waktu countdown
+    gachaButton.textContent = `Wait ${seconds} seconds`;
+
+    const countdownInterval = setInterval(() => {
+        seconds--;
+        gachaButton.textContent = `Wait ${seconds} seconds`;
+        if (seconds === 0) {
+            clearInterval(countdownInterval);
+            gachaButton.disabled = false; 
+            gachaButton.textContent = 'Gacha';
+        }
+    }, 1000); // Interval 1 detik
 
     fetch(apiUrl + getRandomPokemonId())
         .then(response => response.json())
         .then(data => {
-            displayPokemon(data);
-            cardCollection.push(data);
-            saveCardCollection(); 
-            updateCardCollection();
+            if (data && data.stats) { // Memeriksa apakah data dan properti 'stats' ada
+                const pokemonContainer = document.getElementById('pokemonContainer');
+                while (pokemonContainer.firstChild) {
+                    pokemonContainer.removeChild(pokemonContainer.firstChild);
+                }
+                displayPokemon(data);
+                cardCollection.push(data);
+                saveCardCollection(); 
+                updateCardCollection();
+            } else {
+                console.error('Invalid data format:', data);
+            }
         })
         .catch(error => console.error('Error:', error));
-
-    setTimeout(() => {
-        gachaButton.disabled = false; 
-        gachaButton.textContent = 'Gacha'; 
-    }, 10000); // 10 seconds delay
 }
 
 function getRandomPokemonId() {
@@ -38,7 +48,6 @@ function getRandomPokemonId() {
 function saveCardCollection() {
     localStorage.setItem('cardCollection', JSON.stringify(cardCollection));
 }
-
 
 function deletePokemon(index) {
     cardCollection.splice(index, 1); 
